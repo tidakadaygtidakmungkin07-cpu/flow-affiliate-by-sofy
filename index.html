@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flow Affiliate Ajaib by Sofy — AI Baca Foto Produk &amp; Prompt 2×10 Detik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            sofy: {
+              50: '#eff8ff',
+              100: '#dff0ff',
+              200: '#b8e2ff',
+              300: '#7accff',
+              400: '#34b3ff',
+              500: '#0096d6',
+              600: '#0077b6',
+              700: '#005e94',
+              800: '#064e7a',
+              900: '#0b4166',
+            },
+            ajaib: {
+              400: '#ffd54f',
+              500: '#f5b800',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #eff8ff 0%, #f8fbff 50%, #ffffff 100%);
+      min-height: 100vh;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid #dbeafe;
+      box-shadow: 0 10px 30px -12px rgba(0, 119, 182, 0.14);
+    }
+    .drop-zone {
+      border: 2px dashed #93c5fd;
+      transition: all 0.2s ease;
+    }
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color: #0096d6;
+      background-color: #eff8ff;
+    }
+    .drop-zone.has-image {
+      border-style: solid;
+      border-color: #0096d6;
+      background-color: #f8fbff;
+    }
+    .tone-pill.selected, .model-pill.selected {
+      background: linear-gradient(135deg, #0096d6 0%, #0077b6 100%);
+      color: #ffffff;
+      border-color: #0077b6;
+      box-shadow: 0 4px 12px -3px rgba(0, 150, 214, 0.4);
+    }
+    .result-tab.active {
+      background-color: #0096d6;
+      color: #ffffff;
+    }
+    .prompt-box {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+    .toast-enter {
+      animation: toastSlide 0.22s ease-out forwards;
+    }
+    @keyframes toastSlide {
+      from { opacity: 0; transform: translate(-50%, 14px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+    .spin {
+      animation: spinAnim 0.9s linear infinite;
+    }
+    @keyframes spinAnim {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-sofy-200 selection:text-sofy-900">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-sofy-100">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-sofy-500 to-sofy-700 flex items-center justify-center text-white font-extrabold text-lg shadow-md shrink-0 relative">
+          <span>S</span>
+          <span class="w-3 h-3 rounded-full bg-ajaib-400 border-2 border-white absolute -bottom-0.5 -right-0.5"></span>
+        </div>
+        <div class="min-w-0">
+          <h1 class="text-base sm:text-lg font-extrabold text-sofy-900 truncate leading-tight">
+            Flow Affiliate Ajaib <span class="text-sofy-500">by Sofy</span>
+          </h1>
+          <p class="text-xs text-slate-500 truncate">AI Baca Foto Produk Otomatis • 2 Scene × 10 Detik Omni Flash</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 shrink-0">
+        <button id="btnOpenGuide" type="button" class="px-3 py-2 rounded-xl text-xs font-semibold text-sofy-700 bg-sofy-50 hover:bg-sofy-100 border border-sofy-200 transition">
+          Cara Pakai
+        </button>
+        <a href="https://flow.google.com/" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-sofy-500 to-sofy-600 hover:from-sofy-600 hover:to-sofy-700 shadow-sm transition flex items-center gap-1.5">
+          <span>Buka Flow</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5-6h6m0 0v6m0-6L10.5 13.5"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 pt-5 pb-16 space-y-5">
+
+    <!-- Hero Banner -->
+    <section class="rounded-3xl bg-gradient-to-br from-sofy-600 via-sofy-500 to-sky-400 text-white p-5 shadow-lg relative overflow-hidden">
+      <div class="absolute -right-8 -top-8 w-36 h-36 rounded-full bg-white/10 pointer-events-none"></div>
+      <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/20 text-[11px] font-bold mb-1.5">
+            <span class="w-2 h-2 rounded-full bg-ajaib-400"></span>
+            AI Vision Gemini • 2 Scene × 10 Detik Nyambung
+          </span>
+          <h2 class="text-lg sm:text-xl font-extrabold leading-snug">
+            Upload Foto Orang + Produk, AI Baca Detail Produknya Otomatis!
+          </h2>
+          <p class="text-xs sm:text-sm text-sky-50 mt-1">
+            Gemini Vision otomatis baca nama, warna, kemasan &amp; keunggulan dari foto produkmu lalu susun <strong>2 Scene × 10 Detik</strong> untuk <strong>Omni 1.1 &amp; 1.2 Flash</strong> dengan kunci karakter <strong>@orang &amp; @produk</strong>.
+          </p>
+        </div>
+        <div class="bg-white/15 border border-white/25 rounded-2xl px-3.5 py-2.5 shrink-0 text-left sm:text-right">
+          <div class="text-[11px] text-sky-100">Output Siap Flow</div>
+          <div class="text-sm font-extrabold">2 × 10 Detik • 9:16</div>
+          <div class="text-[11px] text-sky-100">Kunci Karakter 100%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 1: 2-PHOTO UPLOAD + AI VISION ANALYZE -->
+    <section class="glass-card rounded-3xl p-5 sm:p-6 space-y-5">
+      <div class="flex items-center justify-between gap-2">
+        <div>
+          <h3 class="text-base font-extrabold text-sofy-900">1. Upload 2 Foto Bahan</h3>
+          <p class="text-xs text-slate-500">Upload Foto Orang &amp; Foto Produk, lalu klik <strong>AI Baca Foto &amp; Buat Prompt</strong>.</p>
+        </div>
+        <button id="btnClearPhotos" type="button" class="text-xs font-semibold text-slate-500 hover:text-rose-600 underline shrink-0">
+          Reset Foto
+        </button>
+      </div>
+
+      <!-- 2 Upload Slots -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- Slot 1: Person -->
+        <div id="dropPerson" class="drop-zone rounded-2xl p-4 flex flex-col items-center justify-center text-center min-h-[195px] relative cursor-pointer">
+          <input id="filePerson" type="file" accept="image/*" class="hidden" />
+          <div id="emptyPerson" class="space-y-2 pointer-events-none">
+            <div class="w-12 h-12 mx-auto rounded-2xl bg-sofy-100 text-sofy-600 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+            </div>
+            <div class="text-sm font-extrabold text-sofy-900">Foto Orang / Model</div>
+            <p class="text-xs text-slate-500 max-w-[205px] mx-auto">Klik pilih foto model (<strong>@orang</strong>)</p>
+          </div>
+          <div id="previewPersonWrap" class="hidden w-full flex flex-col items-center gap-2">
+            <img id="previewPersonImg" alt="Preview Foto Orang" class="max-h-36 max-w-full h-auto rounded-xl object-contain border border-sofy-100 shadow-sm" />
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">Foto Orang Siap</span>
+              <button id="btnChangePerson" type="button" class="text-xs font-bold text-sofy-600 hover:underline">Ganti</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slot 2: Product -->
+        <div id="dropProduct" class="drop-zone rounded-2xl p-4 flex flex-col items-center justify-center text-center min-h-[195px] relative cursor-pointer">
+          <input id="fileProduct" type="file" accept="image/*" class="hidden" />
+          <div id="emptyProduct" class="space-y-2 pointer-events-none">
+            <div class="w-12 h-12 mx-auto rounded-2xl bg-ajaib-400/35 text-amber-800 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg>
+            </div>
+            <div class="text-sm font-extrabold text-sofy-900">Foto Produk (Akan Dibaca AI)</div>
+            <p class="text-xs text-slate-500 max-w-[205px] mx-auto">Klik pilih foto produk etalase (<strong>@produk</strong>)</p>
+          </div>
+          <div id="previewProductWrap" class="hidden w-full flex flex-col items-center gap-2">
+            <img id="previewProductImg" alt="Preview Foto Produk" class="max-h-36 max-w-full h-auto rounded-xl object-contain border border-sofy-100 shadow-sm" />
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">Foto Produk Siap</span>
+              <button id="btnChangeProduct" type="button" class="text-xs font-bold text-sofy-600 hover:underline">Ganti</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- @ Tag Mention Bar -->
+      <div class="rounded-2xl bg-sofy-50/80 border border-sofy-200 p-3.5 space-y-2.5">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs font-extrabold text-sofy-900">Tag @ di Prompt:</span>
+            <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-extrabold">Kunci Karakter 100% Aktif</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button type="button" data-tag-preset="id" class="tag-preset-btn px-2.5 py-1 rounded-lg bg-sofy-600 text-white text-[11px] font-bold transition">@orang &amp; @produk</button>
+            <button type="button" data-tag-preset="en" class="tag-preset-btn px-2.5 py-1 rounded-lg bg-white text-sofy-800 border border-sofy-200 hover:bg-sofy-100 text-[11px] font-bold transition">@Image1 &amp; @Image2</button>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2.5">
+          <div>
+            <label for="inputTagPerson" class="block text-[11px] font-bold text-slate-600 mb-1">Tag @ Foto Orang</label>
+            <input id="inputTagPerson" type="text" value="@orang" class="w-full px-3 py-2 rounded-xl border border-sofy-200 bg-white text-xs font-extrabold text-sofy-800 focus:border-sofy-500 outline-none" />
+          </div>
+          <div>
+            <label for="inputTagProduct" class="block text-[11px] font-bold text-slate-600 mb-1">Tag @ Foto Produk</label>
+            <input id="inputTagProduct" type="text" value="@produk" class="w-full px-3 py-2 rounded-xl border border-sofy-200 bg-white text-xs font-extrabold text-amber-800 focus:border-sofy-500 outline-none" />
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Detection Summary Banner (Shown after Gemini analyzes photo) -->
+      <div id="aiDetectedBox" class="hidden rounded-2xl bg-emerald-50 border border-emerald-200 p-4 space-y-1.5">
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-xs font-extrabold text-emerald-900">Detail Produk Terbaca oleh Gemini AI:</span>
+          <span id="aiModelUsedBadge" class="px-2 py-0.5 rounded-full bg-emerald-200/70 text-emerald-900 text-[10px] font-bold">Gemini Vision</span>
+        </div>
+        <div id="aiDetectedName" class="text-sm font-extrabold text-slate-900"></div>
+        <div id="aiDetectedVisual" class="text-xs text-slate-700 leading-relaxed"></div>
+      </div>
+
+      <!-- Error / Info Banner -->
+      <div id="aiErrorBox" class="hidden rounded-2xl bg-amber-50 border border-amber-300 p-3.5 text-xs text-amber-950 leading-relaxed"></div>
+
+      <!-- Tone + Optional Note + Big AI Action Buttons -->
+      <div class="space-y-4">
+        <div>
+          <label for="inputShortInfo" class="block text-sm font-bold text-slate-800 mb-1">
+            2. Catatan Tambahan / Harga Promo <span class="text-xs font-normal text-slate-500">(Opsional — kalau pakai AI Baca Foto, otomatis terisi)</span>
+          </label>
+          <input id="inputShortInfo" type="text" placeholder="Contoh: lagi promo cuma 39rb, gratis ongkir" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-sofy-500 focus:ring-2 focus:ring-sofy-200 outline-none text-sm bg-white transition" />
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div>
+            <span class="block text-xs font-bold text-slate-700 mb-1.5">3. Pilih Gaya Jualan:</span>
+            <div id="tonePills" class="flex flex-wrap gap-2">
+              <button type="button" data-tone="racun" class="tone-pill selected px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold transition">Racun TikTok</button>
+              <button type="button" data-tone="review" class="tone-pill px-3.5 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-sofy-50 text-xs font-bold transition">Review Jujur</button>
+              <button type="button" data-tone="solusi" class="tone-pill px-3.5 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-sofy-50 text-xs font-bold transition">Masalah → Solusi</button>
+              <button type="button" data-tone="soft" class="tone-pill px-3.5 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-sofy-50 text-xs font-bold transition">Soft Selling</button>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2 shrink-0">
+            <button id="btnAnalyzeAI" type="button" class="flex-1 sm:flex-none px-5 py-3.5 rounded-2xl bg-gradient-to-r from-sofy-500 to-sofy-600 hover:from-sofy-600 hover:to-sofy-700 text-white font-extrabold text-sm shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
+              <svg id="analyzeSpinner" class="hidden w-4 h-4 spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>
+              <span id="analyzeBtnLabel">AI Baca Foto &amp; Buat Prompt</span>
+            </button>
+            <button id="btnGeneratePrompt" type="button" class="px-4 py-3.5 rounded-2xl bg-sofy-50 hover:bg-sofy-100 text-sofy-800 border border-sofy-200 font-bold text-xs sm:text-sm transition">
+              Mode Cepat
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULT SECTION -->
+    <section id="resultSection" class="glass-card rounded-3xl p-5 sm:p-6 space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
+        <div class="flex items-center gap-3">
+          <div id="miniThumbs" class="flex items-center -space-x-2">
+            <div id="miniThumb1" class="w-10 h-10 rounded-xl bg-sofy-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-sofy-700 overflow-hidden shadow-sm">Orang</div>
+            <div id="miniThumb2" class="w-10 h-10 rounded-xl bg-ajaib-400/40 border-2 border-white flex items-center justify-center text-[10px] font-bold text-amber-900 overflow-hidden shadow-sm">Produk</div>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-sofy-900">Hasil Prompt 2 Scene × 10 Detik (Omni Flash)</h3>
+            <p class="text-xs text-slate-500">Upload 2 foto di atas ke Google Flow, atur durasi <strong>10 detik (9:16)</strong> per scene.</p>
+          </div>
+        </div>
+
+        <button id="btnShuffleAll" type="button" class="px-3.5 py-2 rounded-xl bg-ajaib-400/35 hover:bg-ajaib-400/60 text-amber-950 border border-amber-300 text-xs font-bold transition shrink-0">
+          Acak Variasi Skrip
+        </button>
+      </div>
+
+      <!-- Result Tabs -->
+      <div class="flex flex-wrap gap-2">
+        <button type="button" data-tab="video" class="result-tab active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition">
+          2 Scene Nyambung (2 × 10 Detik)
+        </button>
+        <button type="button" data-tab="photo" class="result-tab px-4 py-2 rounded-xl bg-sofy-50 text-sofy-800 hover:bg-sofy-100 text-xs sm:text-sm font-bold transition">
+          Prompt Foto Pegang Produk
+        </button>
+        <button type="button" data-tab="upload" class="result-tab px-4 py-2 rounded-xl bg-sofy-50 text-sofy-800 hover:bg-sofy-100 text-xs sm:text-sm font-bold transition">
+          Caption &amp; Checklist TikTok
+        </button>
+      </div>
+
+      <!-- TAB 1: 2 CONNECTED SCENES -->
+      <div id="tabVideo" class="tab-panel space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 bg-sofy-50 border border-sofy-200 rounded-2xl p-3">
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-xs font-bold text-sofy-900 mr-1">Tampilkan Model:</span>
+            <button type="button" data-model="both" class="model-pill selected px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-bold transition">Keduanya (1.1 &amp; 1.2)</button>
+            <button type="button" data-model="omni11" class="model-pill px-3 py-1.5 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-sofy-100 text-xs font-bold transition">Omni 1.1 Flash (Lama)</button>
+            <button type="button" data-model="omni12" class="model-pill px-3 py-1.5 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-sofy-100 text-xs font-bold transition">Omni 1.2 Flash (Terbaru)</button>
+          </div>
+          <a href="https://flow.google.com/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-sofy-600 underline">Buka Google Flow ↗</a>
+        </div>
+
+        <div class="rounded-2xl bg-emerald-50 border border-emerald-200 px-4 py-3 text-xs text-emerald-950 leading-relaxed">
+          <strong>Cara bikin nyambung mulus di Google Flow:</strong> Generate <strong>Scene 1 (10 detik)</strong> dulu dengan referensi <strong>@orang + @produk</strong>. Lalu untuk <strong>Scene 2 (10 detik)</strong>, pakai fitur <em>Extend / Scenebuilder</em> (atau pakai frame terakhir Scene 1 + tetap kunci <strong>@orang &amp; @produk</strong>).
+        </div>
+
+        <!-- SCENE 1 -->
+        <div class="rounded-3xl border-2 border-sofy-200 bg-sofy-50/40 p-4 sm:p-5 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="px-3 py-1 rounded-full bg-sofy-600 text-white text-xs font-extrabold">SCENE 1 (0 – 10 Detik)</span>
+              <span class="text-xs font-bold text-sofy-900">Hook + Kenalin Produk</span>
+            </div>
+            <span id="wordCountBadge1" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">22 kata • Pas 10 detik</span>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-sofy-200 p-3.5 space-y-1.5">
+            <label for="inputDialogScene1" class="block text-xs font-extrabold text-sofy-900">
+              Dialog Scene 1 (0–10 detik — bisa diedit langsung):
+            </label>
+            <textarea id="inputDialogScene1" rows="2" class="w-full px-3 py-2 rounded-xl border border-slate-200 focus:border-sofy-500 focus:ring-2 focus:ring-sofy-100 outline-none text-sm bg-sofy-50/30 resize-none"></textarea>
+          </div>
+
+          <div class="card-omni11 rounded-2xl border border-sofy-200 bg-white p-4 space-y-2.5 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-slate-200 text-slate-800">Scene 1 • Omni 1.1 Flash (Lama)</span>
+              <span class="text-[11px] font-bold text-sofy-700">10 Detik • 1 Take Stabil</span>
+            </div>
+            <div id="promptS1Omni11" class="prompt-box bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-700 select-all"></div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" data-copy-target="promptS1Omni11" class="copy-btn flex-1 sm:flex-none px-4 py-2 rounded-xl bg-sofy-500 hover:bg-sofy-600 text-white text-xs font-bold transition">
+                Salin Scene 1 (Omni 1.1)
+              </button>
+              <a href="https://flow.google.com/" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition ml-auto">Buka Flow ↗</a>
+            </div>
+          </div>
+
+          <div class="card-omni12 rounded-2xl border-2 border-sofy-400 bg-white p-4 space-y-2.5 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-sofy-600 text-white">Scene 1 • Omni 1.2 Flash (Terbaru)</span>
+              <span class="text-[11px] font-extrabold px-2 py-0.5 rounded-full bg-ajaib-400/50 text-amber-950">Rekomendasi</span>
+            </div>
+            <div id="promptS1Omni12" class="prompt-box bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-700 select-all"></div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" data-copy-target="promptS1Omni12" class="copy-btn flex-1 sm:flex-none px-4 py-2 rounded-xl bg-gradient-to-r from-sofy-500 to-sofy-600 hover:from-sofy-600 hover:to-sofy-700 text-white text-xs font-bold transition">
+                Salin Scene 1 (Omni 1.2)
+              </button>
+              <a href="https://flow.google.com/" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition ml-auto">Buka Flow ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-center gap-2 text-xs font-extrabold text-sofy-700">
+          <span class="h-px flex-1 bg-sofy-200"></span>
+          <span class="px-3 py-1 rounded-full bg-sofy-100 border border-sofy-200">↓ Nyambung Langsung Tanpa Pindah Lokasi &amp; Baju ↓</span>
+          <span class="h-px flex-1 bg-sofy-200"></span>
+        </div>
+
+        <!-- SCENE 2 -->
+        <div class="rounded-3xl border-2 border-amber-200 bg-amber-50/40 p-4 sm:p-5 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="px-3 py-1 rounded-full bg-amber-500 text-white text-xs font-extrabold">SCENE 2 (10 – 20 Detik)</span>
+              <span class="text-xs font-bold text-amber-950">Lanjutan Demo + CTA Keranjang Kuning</span>
+            </div>
+            <span id="wordCountBadge2" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">22 kata • Pas 10 detik</span>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-amber-200 p-3.5 space-y-1.5">
+            <label for="inputDialogScene2" class="block text-xs font-extrabold text-amber-950">
+              Dialog Scene 2 (10–20 detik — lanjutan dari Scene 1, bisa diedit):
+            </label>
+            <textarea id="inputDialogScene2" rows="2" class="w-full px-3 py-2 rounded-xl border border-slate-200 focus:border-sofy-500 focus:ring-2 focus:ring-sofy-100 outline-none text-sm bg-amber-50/30 resize-none"></textarea>
+          </div>
+
+          <div class="card-omni11 rounded-2xl border border-sofy-200 bg-white p-4 space-y-2.5 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-slate-200 text-slate-800">Scene 2 • Omni 1.1 Flash (Lama)</span>
+              <span class="text-[11px] font-bold text-emerald-700">Sambungan Mulus Scene 1</span>
+            </div>
+            <div id="promptS2Omni11" class="prompt-box bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-700 select-all"></div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" data-copy-target="promptS2Omni11" class="copy-btn flex-1 sm:flex-none px-4 py-2 rounded-xl bg-sofy-500 hover:bg-sofy-600 text-white text-xs font-bold transition">
+                Salin Scene 2 (Omni 1.1)
+              </button>
+              <a href="https://flow.google.com/" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition ml-auto">Buka Flow ↗</a>
+            </div>
+          </div>
+
+          <div class="card-omni12 rounded-2xl border-2 border-sofy-400 bg-white p-4 space-y-2.5 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-sofy-600 text-white">Scene 2 • Omni 1.2 Flash (Terbaru)</span>
+              <span class="text-[11px] font-extrabold px-2 py-0.5 rounded-full bg-ajaib-400/50 text-amber-950">Rekomendasi</span>
+            </div>
+            <div id="promptS2Omni12" class="prompt-box bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-700 select-all"></div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" data-copy-target="promptS2Omni12" class="copy-btn flex-1 sm:flex-none px-4 py-2 rounded-xl bg-gradient-to-r from-sofy-500 to-sofy-600 hover:from-sofy-600 hover:to-sofy-700 text-white text-xs font-bold transition">
+                Salin Scene 2 (Omni 1.2)
+              </button>
+              <a href="https://flow.google.com/" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition ml-auto">Buka Flow ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: COMBINED PHOTO PROMPT -->
+      <div id="tabPhoto" class="tab-panel hidden space-y-4">
+        <div class="rounded-2xl bg-amber-50 border border-amber-200 p-3.5 text-xs text-amber-900 leading-relaxed">
+          <strong>Kapan pakai ini?</strong> Kalau mau bikin <strong>1 foto gabungan dulu</strong> (orang di @orang sedang pegang @produk), upload kedua foto lalu tempel prompt ini. Hasil fotonya bisa jadi <em>First Frame</em> di Omni Flash!
+        </div>
+
+        <div class="rounded-2xl border border-sofy-200 bg-white p-4 space-y-3">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-sm font-extrabold text-sofy-900">Prompt Gabung: Orang Pegang Produk (9:16)</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-sofy-100 text-sofy-700 text-[11px] font-bold">Kunci Karakter</span>
+          </div>
+          <div id="outputPhotoPrompt" class="prompt-box bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-slate-700 select-all"></div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" data-copy-target="outputPhotoPrompt" class="copy-btn px-4 py-2.5 rounded-xl bg-sofy-500 hover:bg-sofy-600 text-white text-xs font-bold transition">
+              Salin Prompt Foto
+            </button>
+            <a href="https://flow.google.com/" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+              Buka Google Flow ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: CAPTION & CHECKLIST -->
+      <div id="tabUpload" class="tab-panel hidden space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="rounded-2xl border border-sofy-200 bg-white p-4 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-extrabold text-sofy-900">Caption &amp; Hashtag Siap Posting</span>
+              <button type="button" data-copy-target="outputCaptionFull" class="copy-btn text-xs font-bold text-sofy-600 hover:underline">Salin</button>
+            </div>
+            <div id="outputCaptionFull" class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-sm text-slate-700 whitespace-pre-line leading-relaxed"></div>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <button id="btnCopyAll" type="button" class="flex-1 py-2.5 px-3 rounded-xl bg-sofy-500 hover:bg-sofy-600 text-white text-xs font-bold transition">
+                Salin Semua Paket
+              </button>
+              <button id="btnDownloadTxt" type="button" class="py-2.5 px-3 rounded-xl bg-sofy-50 hover:bg-sofy-100 text-sofy-800 border border-sofy-200 text-xs font-bold transition">
+                Download .TXT
+              </button>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-sofy-200 bg-white p-4 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-extrabold text-sofy-900">Checklist Aman Upload TikTok</span>
+              <span id="checkCount" class="px-2 py-0.5 rounded-full bg-sofy-100 text-sofy-800 text-xs font-extrabold">0/5</span>
+            </div>
+            <div id="checklistBox" class="space-y-2"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-sofy-100 bg-white/80 py-5 px-4 text-center">
+    <p class="text-xs font-bold text-sofy-900">Flow Affiliate Ajaib by Sofy</p>
+    <p class="text-[11px] text-slate-500 mt-0.5">AI Baca Foto Produk Otomatis (Gemini Vision) • 2 Scene × 10 Detik Omni Flash 1.1 &amp; 1.2</p>
+  </footer>
+
+  <!-- Guide Modal -->
+  <div id="guideModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-5 sm:p-6 shadow-2xl border border-sofy-100">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-base font-extrabold text-sofy-900">Cara Pakai (Otomatis Baca Foto!)</h3>
+        <button id="btnCloseGuide" type="button" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold">✕</button>
+      </div>
+      <ol class="space-y-2.5 text-xs sm:text-sm text-slate-700 list-decimal pl-5 leading-relaxed">
+        <li><strong>Upload Foto Orang + Foto Produk</strong> di kotak di atas.</li>
+        <li>Klik <strong>AI Baca Foto &amp; Buat Prompt</strong> — Gemini otomatis mengenali nama, warna, kemasan &amp; manfaat produk lalu meracik 2 Scene × 10 Detik.</li>
+        <li>Buka <a href="https://flow.google.com/" target="_blank" rel="noopener noreferrer" class="text-sofy-600 font-bold underline">flow.google.com</a>, pilih <strong>Gemini Omni 1.1 / 1.2 Flash</strong>, durasi <strong>10 detik (9:16)</strong>, masukkan 2 foto referensi, lalu tempel Scene 1 &amp; lanjut Scene 2!</li>
+      </ol>
+      <div class="mt-4 pt-3 border-t border-slate-100 flex justify-end">
+        <button id="btnCloseGuideBottom" type="button" class="px-5 py-2 rounded-xl bg-sofy-500 hover:bg-sofy-600 text-white text-xs font-bold">
+          Sip, Gas Coba!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2.5 rounded-2xl bg-sofy-900 text-white text-xs sm:text-sm font-bold shadow-xl"></div>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = 'flow_sofy_vision_v4';
+
+      const CHECKLIST = [
+        { id: 'k1', text: 'Pastikan wajah @orang & bentuk/tulisan @produk di Scene 1 dan Scene 2 tidak berubah.' },
+        { id: 'k2', text: 'Sambungkan Scene 1 (0–10d) dan Scene 2 (10–20d) di Scenebuilder atau CapCut.' },
+        { id: 'k3', text: 'Cek suara & lip-sync bahasa Indonesianya sudah jelas dan pas 20 detik.' },
+        { id: 'k4', text: 'Pasang Keranjang Kuning yang produknya 100% sama dengan Foto Produk.' },
+        { id: 'k5', text: 'Aktifkan label "Konten buatan AI" saat upload di TikTok agar akun tetap aman.' }
+      ];
+
+      let state = {
+        shortInfo: '',
+        tagPerson: '@orang',
+        tagProduct: '@produk',
+        tone: 'racun',
+        modelFilter: 'both',
+        variant: 0,
+        activeTab: 'video',
+        customDialog1: '',
+        customDialog2: '',
+        aiData: null, // { productName, productVisualEn, productBenefitsId, scene1Dialog, scene2Dialog, caption, hashtags, modelUsed }
+        checklist: {},
+        personImg: '',
+        productImg: ''
+      };
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            state = {
+              ...state,
+              shortInfo: parsed.shortInfo || '',
+              tagPerson: parsed.tagPerson || '@orang',
+              tagProduct: parsed.tagProduct || '@produk',
+              tone: parsed.tone || 'racun',
+              modelFilter: parsed.modelFilter || 'both',
+              variant: Number(parsed.variant) || 0,
+              customDialog1: parsed.customDialog1 || '',
+              customDialog2: parsed.customDialog2 || '',
+              checklist: parsed.checklist || {}
+            };
+          }
+        } catch (e) {}
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({
+            shortInfo: state.shortInfo,
+            tagPerson: state.tagPerson,
+            tagProduct: state.tagProduct,
+            tone: state.tone,
+            modelFilter: state.modelFilter,
+            variant: state.variant,
+            customDialog1: state.customDialog1,
+            customDialog2: state.customDialog2,
+            checklist: state.checklist
+          }));
+        } catch (e) {}
+      }
+
+      let toastTimer = null;
+      function showToast(msg) {
+        const el = document.getElementById('toast');
+        if (!el) return;
+        el.textContent = msg;
+        el.classList.remove('hidden');
+        el.classList.add('toast-enter');
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          el.classList.add('hidden');
+          el.classList.remove('toast-enter');
+        }, 2500);
+      }
+
+      function copyText(text, msg) {
+        if (!text) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => showToast(msg || 'Berhasil disalin!')).catch(() => fallbackCopy(text, msg));
+        } else {
+          fallbackCopy(text, msg);
+        }
+      }
+
+      function fallbackCopy(text, msg) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try {
+          document.execCommand('copy');
+          showToast(msg || 'Berhasil disalin!');
+        } catch (e) {
+          showToast('Silakan salin teks secara manual.');
+        }
+        document.body.removeChild(ta);
+      }
+
+      function escapeHtml(str) {
+        return String(str || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      // Resize image on canvas so payload stays small (<250KB) for fast Gemini Vision & Vercel
+      function compressImageFile(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onerror = reject;
+          reader.onload = (ev) => {
+            const img = new Image();
+            img.onerror = () => resolve(ev.target.result);
+            img.onload = () => {
+              const maxDim = 960;
+              let w = img.width;
+              let h = img.height;
+              if (w > maxDim || h > maxDim) {
+                if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+                else { w = Math.round(w * maxDim / h); h = maxDim; }
+              }
+              const canvas = document.createElement('canvas');
+              canvas.width = w;
+              canvas.height = h;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, w, h);
+              resolve(canvas.toDataURL('image/jpeg', 0.82));
+            };
+            img.src = ev.target.result;
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function getProductPhrase() {
+        if (state.aiData && state.aiData.productName) {
+          return {
+            hasInfo: true,
+            shortName: state.aiData.productName,
+            visualEn: state.aiData.productVisualEn || state.aiData.productName,
+            detailLine: state.aiData.productBenefitsId || state.shortInfo || 'kualitasnya rapi dan praktis banget dipakai harian'
+          };
+        }
+        const raw = (state.shortInfo || '').trim();
+        if (!raw) {
+          return {
+            hasInfo: false,
+            shortName: 'produk ini',
+            visualEn: '',
+            detailLine: 'kualitasnya rapi, praktis banget dipakai harian, dan beneran worth it'
+          };
+        }
+        const parts = raw.split(/[,–-]/).map(s => s.trim()).filter(Boolean);
+        return {
+          hasInfo: true,
+          shortName: parts[0] || raw,
+          visualEn: parts[0] || raw,
+          detailLine: parts.length > 1 ? parts.slice(1).join(', ') : `${raw} yang beneran bikin puas`
+        };
+      }
+
+      function buildDefaultTwoSceneDialogs() {
+        if (state.aiData && state.aiData.scene1Dialog && state.aiData.scene2Dialog && state.variant === 0) {
+          return { d1: state.aiData.scene1Dialog, d2: state.aiData.scene2Dialog };
+        }
+        const info = getProductPhrase();
+        const v = state.variant % 3;
+        const prod = info.hasInfo ? info.shortName : 'produk yang lagi aku pegang ini';
+        const detail = info.hasInfo ? info.detailLine : 'kualitasnya rapi dan praktis banget dipakai harian';
+
+        const pairs = {
+          racun: [
+            [
+              `Seriusan nyesel baru tahu sekarang! Lihat deh ${prod} ini, dari kemarin lewat FYP terus dan pas aku coba sendiri ternyata sebagus itu!`,
+              `Asli ini ${detail}. Mumpung stok dan promonya masih aman banget, langsung klik keranjang kuning kiri bawah sekarang sebelum kehabisan ya!`
+            ],
+            [
+              `Stop scroll dulu deh! Kamu wajib banget lihat ${prod} yang lagi jadi rebutan ini—begitu dipegang langsung kerasa banget kualitasnya!`,
+              `Yang paling aku suka, ${detail}. Jangan nunggu harganya naik lagi, yuk langsung checkout di keranjang kuning kiri bawah sekarang!`
+            ],
+            [
+              `Pantesan pada borong ${prod} ini! Awalnya aku cuma penasaran, tapi pas barangnya datang dan dicoba langsung, beneran bikin kaget!`,
+              `Soalnya ${detail}. Mumpung masih ada promo hari ini, buruan amankan di keranjang kuning kiri bawah sekarang juga ya!`
+            ]
+          ],
+          review: [
+            [
+              `Review jujur setelah pakai ${prod} ini: banyak yang nanya beneran bagus atau cuma hype doang? Sini aku tunjukin langsung barang aslinya!`,
+              `Jujur ini ${detail}, beneran nggak zonk sama sekali. Yang mau samaan langsung cek keranjang kuning kiri bawah sekarang ya!`
+            ],
+            [
+              `Awalnya aku sempet ragu mau beli ${prod} ini, takut nggak sesuai foto. Eh pas nyampe dan aku pegang sendiri, hasilnya di luar ekspektasi!`,
+              `Beneran ${detail}. Worth it banget buat dibeli, langsung klik keranjang kuning di bawah mumpung stoknya masih lengkap!`
+            ],
+            [
+              `Nih aku spill jujur soal ${prod} yang sering banget ditanyain. Lihat sendiri bentuk dan detailnya rapi banget pas dilihat dari dekat!`,
+              `Selain itu ${detail}. Kalau kamu lagi cari yang awet, langsung checkout aja lewat keranjang kuning kiri bawah ya!`
+            ]
+          ],
+          solusi: [
+            [
+              `Capek nggak sih kalau dari kemarin masih bingung cari yang beneran cocok? Untung banget akhirnya aku ketemu ${prod} yang satu ini!`,
+              `Karena ${detail}, urusan harian jadi jauh lebih gampang. Yuk langsung klik keranjang kuning kiri bawah sebelum promonya habis!`
+            ],
+            [
+              `Buat kamu yang pengin cara paling simpel tanpa ribet, kenalin nih ${prod}. Begitu dicoba sekali aja langsung kerasa banget bedanya!`,
+              `Soalnya ${detail}. Mumpung masih harga promo, langsung amankan sekarang di keranjang kuning kiri bawah ya!`
+            ],
+            [
+              `Nggak perlu buang uang coba-coba lagi deh—cukup andalin ${prod} ini aja! Lihat deh detailnya emang sebagus dan senyaman itu.`,
+              `Beneran ${detail}. Langsung cek stok dan checkout di keranjang kuning kiri bawah sekarang ya!`
+            ]
+          ],
+          soft: [
+            [
+              `Satu barang favorit yang belakangan ini hampir tiap hari aku pakai: ${prod}. Simpel banget, tapi beneran bikin aktivitas jauh lebih nyaman.`,
+              `Yang bikin betah tuh karena ${detail}. Kalau kamu mau samaan, udah aku taruh link-nya di keranjang kuning kiri bawah ya!`
+            ],
+            [
+              `Kalau kamu lagi cari barang berguna buat dipakai sendiri atau buat hadiah, coba deh intip ${prod} yang lagi aku pegang ini.`,
+              `Asli ${detail}, dijamin kepakai terus tiap hari. Langsung cek detail promonya di keranjang kuning kiri bawah ya!`
+            ],
+            [
+              `Nggak nyangka hal sesimpel ${prod} bisa se-ngebantu ini buat rutinitas harian aku. Dari bentuk sampai kualitasnya beneran rapi banget.`,
+              `Apalagi ${detail}. Buat yang penasaran sama harganya, langsung klik aja keranjang kuning di bawah ya!`
+            ]
+          ]
+        };
+
+        const list = pairs[state.tone] || pairs.racun;
+        return { d1: list[v][0], d2: list[v][1] };
+      }
+
+      function getActiveDialogs() {
+        const def = buildDefaultTwoSceneDialogs();
+        return {
+          d1: state.customDialog1 && state.customDialog1.trim() ? state.customDialog1.trim() : def.d1,
+          d2: state.customDialog2 && state.customDialog2.trim() ? state.customDialog2.trim() : def.d2
+        };
+      }
+
+      function updateWordCountBadge(badgeId, text) {
+        const words = (text || '').trim().split(/\s+/).filter(Boolean).length;
+        const badge = document.getElementById(badgeId);
+        if (!badge) return;
+        if (words <= 28 && words >= 14) {
+          badge.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800';
+          badge.textContent = `${words} kata • Pas 10 detik`;
+        } else if (words > 28) {
+          badge.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-900';
+          badge.textContent = `${words} kata • Agak panjang, coba ringkas`;
+        } else {
+          badge.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-sofy-100 text-sofy-800';
+          badge.textContent = `${words} kata • Singkat & santai`;
+        }
+      }
+
+      function getTags() {
+        const clean = (val, fallback) => {
+          const t = (val || '').trim().replace(/^@+/, '');
+          return '@' + (t || fallback);
+        };
+        return {
+          person: clean(state.tagPerson, 'orang'),
+          product: clean(state.tagProduct, 'produk')
+        };
+      }
+
+      function buildS1Omni11(dialog1) {
+        const info = getProductPhrase();
+        const tags = getTags();
+        const prodDetail = info.visualEn ? ` (${info.visualEn})` : '';
+        return `SCENE 1 of 2 (10-second vertical 9:16 handheld smartphone UGC video, single continuous steady shot). CRITICAL CHARACTER LOCK: Do NOT alter, morph, beautify, or change the face, facial features, skin tone, hairstyle/hijab, body, or clothing of ${tags.person} in any frame—keep ${tags.person} 100% identical to the reference photo. CRITICAL PRODUCT LOCK: Keep ${tags.product}${prodDetail} 100% identical in shape, color, and label text with zero distortion. Action: In bright soft natural indoor daylight with a clean aesthetic home background, ${tags.person} smiles excitedly at the camera to hook the viewer while holding ${tags.product} naturally near chest level. Smoothly ends at 10s with ${tags.person} holding ${tags.product} steadily in front of chest, smiling toward camera, ready for seamless continuation into Scene 2. Native Indonesian audio (natural friendly voice matching ${tags.person}, accurate lip-sync, light room ambience, no music): "${dialog1}" — Realistic smartphone video, no on-screen text, no watermark.`;
+      }
+
+      function buildS1Omni12(dialog1) {
+        const info = getProductPhrase();
+        const tags = getTags();
+        const prodDetail = info.visualEn ? ` (${info.visualEn})` : '';
+        return `SCENE 1 of 2 (10-second vertical 9:16 photorealistic TikTok affiliate UGC video featuring ${tags.person} and ${tags.product}${prodDetail}). CRITICAL CHARACTER LOCK: Lock the exact face, facial structure, skin tone, eyes, hairstyle/hijab, and outfit of ${tags.person} 100% identical across every frame—zero face morphing, zero identity drift. CRITICAL PRODUCT LOCK: Keep ${tags.product} 100% faithful in shape, color, and label details. Sequence beat by beat: [0-4s Hook] Medium close-up handheld smartphone shot in bright natural window daylight, clean aesthetic room background; ${tags.person} makes lively eye contact and raises ${tags.product} near chest level with an excited expression. [4-10s Intro] Slight smooth framing adjustment as ${tags.person} presents ${tags.product} naturally in hand, ending at 10s in a steady centered medium shot holding ${tags.product} near chest so Scene 2 can continue seamlessly. Audio & Dialogue (natural expressive Indonesian voice matching ${tags.person}, tight lip-sync, subtle room ambience, no music): "${dialog1}" — 9:16 authentic UGC realism, no text overlay, no watermark.`;
+      }
+
+      function buildS2Omni11(dialog2) {
+        const info = getProductPhrase();
+        const tags = getTags();
+        const prodDetail = info.visualEn ? ` (${info.visualEn})` : '';
+        return `SCENE 2 of 2 — SEAMLESS CONTINUATION FROM SCENE 1 (10-second vertical 9:16 handheld smartphone UGC video, single continuous steady shot). CONTINUITY & CHARACTER LOCK: Continue directly from the exact final frame, lighting, room background, camera angle, outfit, and pose of Scene 1 with ZERO jump cuts. Keep ${tags.person} 100% identical in face, skin tone, hairstyle/hijab, and clothing with zero morphing, and keep ${tags.product}${prodDetail} 100% identical in shape, color, and label text. Action: Starting from holding ${tags.product} near chest level, ${tags.person} smoothly brings ${tags.product} slightly closer to the lens and turns it gently to showcase its real packaging details, then pulls back slightly with a warm confident smile and gestures subtly downward toward the bottom-left corner (yellow basket area) as the clip finishes. Native Indonesian audio (exact same voice tone as Scene 1, matching ${tags.person}, accurate lip-sync, light room ambience, no music): "${dialog2}" — Realistic smartphone video, no on-screen text, no watermark.`;
+      }
+
+      function buildS2Omni12(dialog2) {
+        const info = getProductPhrase();
+        const tags = getTags();
+        const prodDetail = info.visualEn ? ` (${info.visualEn})` : '';
+        return `SCENE 2 of 2 — SEAMLESS CONTINUATION FROM SCENE 1 (10-second vertical 9:16 photorealistic TikTok affiliate UGC video). CONTINUITY & CHARACTER LOCK: Start seamlessly from the exact ending pose, lighting, room background, and camera position of Scene 1. Keep the exact face, facial structure, skin tone, hairstyle/hijab, and outfit of ${tags.person} 100% unchanged and keep ${tags.product}${prodDetail} 100% faithful in shape, color, and label with zero distortion. Sequence beat by beat: [0-5s Close-up Demo] Smooth gentle push-in as ${tags.person} angles and rotates ${tags.product} clearly toward the camera lens so its real texture and packaging stay sharp while ${tags.person}'s face stays completely unchanged. [5-10s CTA Ending] Smooth pull-back to the same warm medium shot; ${tags.person} holds ${tags.product} neatly with one hand, smiles warmly, and points subtly downward toward the bottom-left yellow basket area. Audio & Dialogue (exact same expressive Indonesian voice as Scene 1, tight lip-sync, subtle room ambience, no music): "${dialog2}" — 9:16 authentic UGC realism, no text overlay, no watermark.`;
+      }
+
+      function buildPhotoPrompt() {
+        const info = getProductPhrase();
+        const tags = getTags();
+        const extra = info.visualEn ? ` (${info.visualEn})` : '';
+        const poses = [
+          `Vertical 9:16 photorealistic UGC smartphone photo. CRITICAL CHARACTER LOCK: Keep the exact face, facial structure, skin tone, hairstyle/hijab, and clothing of ${tags.person} 100% identical and unchanged—do NOT alter or morph ${tags.person}. ${tags.person} smiles naturally at the camera while holding ${tags.product}${extra} clearly near chest level with one hand, keeping the exact shape, colors, and packaging label of ${tags.product} 100% faithful with zero distortion. Soft natural window daylight, clean aesthetic home background, sharp focus, no text overlay, no watermark.`,
+          `Vertical 9:16 authentic TikTok affiliate selfie photo. CRITICAL CHARACTER LOCK: Do NOT change the face, identity, hair/hijab, or outfit of ${tags.person}—keep ${tags.person} 100% identical to the reference image. ${tags.person} enthusiastically showcases ${tags.product}${extra} closer to the lens with natural finger grip while keeping the exact shape, color, and label of ${tags.product} completely undistorted. Bright natural daylight, crisp smartphone camera realism, no text, no watermark.`
+        ];
+        return poses[state.variant % poses.length];
+      }
+
+      function buildCaptionFull() {
+        if (state.aiData && state.aiData.caption && state.variant === 0) {
+          return `${state.aiData.caption}\n\n${state.aiData.hashtags || '#racuntiktok #tiktokaffiliate #fyp'}`;
+        }
+        const info = getProductPhrase();
+        const name = info.hasInfo ? info.shortName : 'produk yang aku pegang di video ini';
+        const captions = [
+          `Nyesel baru cobain ${name} sekarang 😭✨\nBeneran ${info.detailLine}.\n\nMumpung stok & promo masih aman, langsung cek keranjang kuning kiri bawah ya! 👇🛒\n\n#racuntiktok #tiktokaffiliate #reviewjujur #fyp #spillproduk`,
+          `Review jujur ${name} — asli sebagus itu! 🔥\n✅ ${info.detailLine}\n✅ Cocok banget buat dipakai harian\n\nLangsung klik keranjang kuning sebelum kehabisan promonya! 🛒✨\n\n#tiktokshop #racunbermanfaat #tiktokaffiliate #fyp #rekomendasi`
+        ];
+        return captions[state.variant % captions.length];
+      }
+
+      // Gemini Vision Analysis via Vercel /api/analyze (API Key aman di server Vercel, follower tinggal pakai!)
+      async function analyzeProductWithGemini() {
+        const errBox = document.getElementById('aiErrorBox');
+        errBox.classList.add('hidden');
+
+        if (!state.productImg) {
+          showToast('Upload Foto Produk dulu ya biar AI bisa baca detailnya!');
+          return;
+        }
+
+        const btn = document.getElementById('btnAnalyzeAI');
+        const spinner = document.getElementById('analyzeSpinner');
+        const label = document.getElementById('analyzeBtnLabel');
+        btn.disabled = true;
+        spinner.classList.remove('hidden');
+        label.textContent = 'AI sedang membaca foto produk...';
+
+        const payload = {
+          productImage: state.productImg,
+          personImage: state.personImg || '',
+          note: (state.shortInfo || '').trim(),
+          tone: state.tone
+        };
+
+        try {
+          const resp = await fetch('/api/analyze', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          const json = await resp.json().catch(() => null);
+          if (!resp.ok || !json || !json.productName) {
+            throw new Error((json && json.error) || 'Server AI belum aktif di pratinjau lokal. Upload paket Vercel + pasang GEMINI_API_KEY di Vercel agar fitur baca foto otomatis aktif untuk semua follower.');
+          }
+
+          state.aiData = json;
+          state.variant = 0;
+          state.customDialog1 = '';
+          state.customDialog2 = '';
+          if (json.productName && !state.shortInfo.trim()) {
+            state.shortInfo = json.productName;
+            document.getElementById('inputShortInfo').value = json.productName;
+          }
+
+          document.getElementById('aiDetectedBox').classList.remove('hidden');
+          document.getElementById('aiModelUsedBadge').textContent = json.modelUsed || 'Gemini Vision';
+          document.getElementById('aiDetectedName').textContent = json.productName;
+          document.getElementById('aiDetectedVisual').textContent = `Detail visual: ${json.productVisualEn} • Keunggulan: ${json.productBenefitsId}`;
+
+          saveState();
+          renderOutputs(true);
+          switchTab('video');
+          document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          showToast('Detail produk terbaca! Prompt 2 scene 10 detik siap disalin!');
+        } catch (err) {
+          errBox.textContent = err.message || 'Server AI belum aktif di pratinjau ini. Setelah deploy ke Vercel + pasang GEMINI_API_KEY, follower tinggal pakai gratis!';
+          errBox.classList.remove('hidden');
+          showToast('Fitur baca foto aktif setelah deploy di Vercel.');
+        } finally {
+          btn.disabled = false;
+          spinner.classList.add('hidden');
+          label.textContent = 'AI Baca Foto & Buat Prompt';
+        }
+      }
+
+      function updatePhotoPreviews() {
+        const hasPerson = !!state.personImg;
+        const hasProduct = !!state.productImg;
+
+        document.getElementById('dropPerson').classList.toggle('has-image', hasPerson);
+        document.getElementById('emptyPerson').classList.toggle('hidden', hasPerson);
+        document.getElementById('previewPersonWrap').classList.toggle('hidden', !hasPerson);
+        if (hasPerson) {
+          document.getElementById('previewPersonImg').src = state.personImg;
+          document.getElementById('miniThumb1').innerHTML = `<img src="${state.personImg}" alt="Orang" class="w-full h-full object-cover" />`;
+        } else {
+          document.getElementById('miniThumb1').textContent = 'Orang';
+        }
+
+        document.getElementById('dropProduct').classList.toggle('has-image', hasProduct);
+        document.getElementById('emptyProduct').classList.toggle('hidden', hasProduct);
+        document.getElementById('previewProductWrap').classList.toggle('hidden', !hasProduct);
+        if (hasProduct) {
+          document.getElementById('previewProductImg').src = state.productImg;
+          document.getElementById('miniThumb2').innerHTML = `<img src="${state.productImg}" alt="Produk" class="w-full h-full object-cover" />`;
+        } else {
+          document.getElementById('miniThumb2').textContent = 'Produk';
+        }
+      }
+
+      function updateModelFilterUI() {
+        document.querySelectorAll('.model-pill').forEach(btn => {
+          const sel = btn.dataset.model === state.modelFilter;
+          btn.classList.toggle('selected', sel);
+          if (sel) btn.classList.remove('bg-white', 'text-slate-700', 'hover:bg-sofy-100');
+          else btn.classList.add('bg-white', 'text-slate-700', 'hover:bg-sofy-100');
+        });
+        document.querySelectorAll('.card-omni11').forEach(el => el.classList.toggle('hidden', state.modelFilter === 'omni12'));
+        document.querySelectorAll('.card-omni12').forEach(el => el.classList.toggle('hidden', state.modelFilter === 'omni11'));
+      }
+
+      function renderOutputs(syncTextarea) {
+        const { d1, d2 } = getActiveDialogs();
+        if (syncTextarea !== false) {
+          document.getElementById('inputDialogScene1').value = d1;
+          document.getElementById('inputDialogScene2').value = d2;
+        }
+        updateWordCountBadge('wordCountBadge1', d1);
+        updateWordCountBadge('wordCountBadge2', d2);
+
+        document.getElementById('promptS1Omni11').textContent = buildS1Omni11(d1);
+        document.getElementById('promptS1Omni12').textContent = buildS1Omni12(d1);
+        document.getElementById('promptS2Omni11').textContent = buildS2Omni11(d2);
+        document.getElementById('promptS2Omni12').textContent = buildS2Omni12(d2);
+        document.getElementById('outputPhotoPrompt').textContent = buildPhotoPrompt();
+        document.getElementById('outputCaptionFull').textContent = buildCaptionFull();
+        updateModelFilterUI();
+        renderChecklist();
+      }
+
+      function renderChecklist() {
+        const box = document.getElementById('checklistBox');
+        box.innerHTML = '';
+        let done = 0;
+        CHECKLIST.forEach(item => {
+          const checked = !!state.checklist[item.id];
+          if (checked) done++;
+          const label = document.createElement('label');
+          label.className = `flex items-start gap-2.5 p-2.5 rounded-xl border cursor-pointer transition ${
+            checked ? 'bg-emerald-50/70 border-emerald-200 text-emerald-900' : 'bg-white border-slate-200 hover:bg-sofy-50/50 text-slate-700'
+          }`;
+          label.innerHTML = `
+            <input type="checkbox" data-cid="${item.id}" ${checked ? 'checked' : ''} class="mt-0.5 w-4 h-4 accent-sofy-600 shrink-0" />
+            <span class="text-xs leading-relaxed ${checked ? 'line-through opacity-75' : ''}">${escapeHtml(item.text)}</span>
+          `;
+          box.appendChild(label);
+        });
+        document.getElementById('checkCount').textContent = `${done}/${CHECKLIST.length}`;
+        box.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          cb.addEventListener('change', (e) => {
+            state.checklist[e.target.dataset.cid] = e.target.checked;
+            saveState();
+            renderChecklist();
+          });
+        });
+      }
+
+      function switchTab(tabName) {
+        state.activeTab = tabName;
+        document.querySelectorAll('.result-tab').forEach(btn => {
+          const active = btn.dataset.tab === tabName;
+          btn.classList.toggle('active', active);
+          if (active) btn.classList.remove('bg-sofy-50', 'text-sofy-800', 'hover:bg-sofy-100');
+          else btn.classList.add('bg-sofy-50', 'text-sofy-800', 'hover:bg-sofy-100');
+        });
+        document.getElementById('tabVideo').classList.toggle('hidden', tabName !== 'video');
+        document.getElementById('tabPhoto').classList.toggle('hidden', tabName !== 'photo');
+        document.getElementById('tabUpload').classList.toggle('hidden', tabName !== 'upload');
+      }
+
+      async function handleFileUpload(file, type) {
+        if (!file || !file.type.startsWith('image/')) {
+          showToast('Pilih file gambar (JPG/PNG/WebP) ya bro!');
+          return;
+        }
+        try {
+          const compressed = await compressImageFile(file);
+          if (type === 'person') {
+            state.personImg = compressed;
+            showToast('Foto Orang siap!');
+          } else {
+            state.productImg = compressed;
+            state.aiData = null;
+            document.getElementById('aiDetectedBox').classList.add('hidden');
+            showToast('Foto Produk siap! Klik "AI Baca Foto & Buat Prompt".');
+          }
+          updatePhotoPreviews();
+        } catch (e) {
+          showToast('Gagal memuat gambar.');
+        }
+      }
+
+      function setupDropZone(dropId, inputId, changeBtnId, type) {
+        const zone = document.getElementById(dropId);
+        const input = document.getElementById(inputId);
+        const changeBtn = document.getElementById(changeBtnId);
+        zone.addEventListener('click', (e) => { if (e.target !== changeBtn) input.click(); });
+        changeBtn.addEventListener('click', (e) => { e.stopPropagation(); input.click(); });
+        input.addEventListener('change', (e) => { if (e.target.files && e.target.files[0]) handleFileUpload(e.target.files[0], type); });
+        zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('drag-over'); });
+        zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+        zone.addEventListener('drop', (e) => {
+          e.preventDefault();
+          zone.classList.remove('drag-over');
+          if (e.dataTransfer.files && e.dataTransfer.files[0]) handleFileUpload(e.dataTransfer.files[0], type);
+        });
+      }
+
+      function buildAllText() {
+        const { d1, d2 } = getActiveDialogs();
+        const info = getProductPhrase();
+        return [
+          '===================================================================',
+          'FLOW AFFILIATE AJAIB BY SOFY — 2 SCENE × 10 DETIK NYAMBUNG (20 DETIK)',
+          '===================================================================',
+          `Produk         : ${info.shortName}`,
+          `Dialog Scene 1 : ${d1}`,
+          `Dialog Scene 2 : ${d2}`,
+          '',
+          '=== SCENE 1 (0-10 DETIK) — OMNI 1.1 FLASH (LAMA) ===',
+          buildS1Omni11(d1),
+          '',
+          '=== SCENE 1 (0-10 DETIK) — OMNI 1.2 FLASH (TERBARU) ===',
+          buildS1Omni12(d1),
+          '',
+          '=== SCENE 2 (10-20 DETIK NYAMBUNG) — OMNI 1.1 FLASH (LAMA) ===',
+          buildS2Omni11(d2),
+          '',
+          '=== SCENE 2 (10-20 DETIK NYAMBUNG) — OMNI 1.2 FLASH (TERBARU) ===',
+          buildS2Omni12(d2),
+          '',
+          '=== PROMPT FOTO GABUNGAN (ORANG PEGANG PRODUK) ===',
+          buildPhotoPrompt(),
+          '',
+          '=== CAPTION & HASHTAG TIKTOK ===',
+          buildCaptionFull()
+        ].join('\n');
+      }
+
+      function updateTagPresetButtons() {
+        const isEn = state.tagPerson.toLowerCase() === '@image1' && state.tagProduct.toLowerCase() === '@image2';
+        document.querySelectorAll('.tag-preset-btn').forEach(btn => {
+          const active = (btn.dataset.tagPreset === 'en' && isEn) || (btn.dataset.tagPreset === 'id' && !isEn);
+          btn.classList.toggle('bg-sofy-600', active);
+          btn.classList.toggle('text-white', active);
+          btn.classList.toggle('bg-white', !active);
+          btn.classList.toggle('text-sofy-800', !active);
+          btn.classList.toggle('border', !active);
+          btn.classList.toggle('border-sofy-200', !active);
+        });
+      }
+
+      function bindEvents() {
+        setupDropZone('dropPerson', 'filePerson', 'btnChangePerson', 'person');
+        setupDropZone('dropProduct', 'fileProduct', 'btnChangeProduct', 'product');
+
+        document.getElementById('btnClearPhotos').addEventListener('click', () => {
+          state.personImg = '';
+          state.productImg = '';
+          state.aiData = null;
+          document.getElementById('filePerson').value = '';
+          document.getElementById('fileProduct').value = '';
+          document.getElementById('aiDetectedBox').classList.add('hidden');
+          document.getElementById('aiErrorBox').classList.add('hidden');
+          updatePhotoPreviews();
+          renderOutputs(true);
+          showToast('Foto direset.');
+        });
+
+        document.getElementById('inputTagPerson').addEventListener('input', (e) => {
+          state.tagPerson = e.target.value;
+          saveState();
+          renderOutputs(false);
+        });
+
+        document.getElementById('inputTagProduct').addEventListener('input', (e) => {
+          state.tagProduct = e.target.value;
+          saveState();
+          renderOutputs(false);
+        });
+
+        document.querySelectorAll('.tag-preset-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (btn.dataset.tagPreset === 'en') {
+              state.tagPerson = '@Image1';
+              state.tagProduct = '@Image2';
+            } else {
+              state.tagPerson = '@orang';
+              state.tagProduct = '@produk';
+            }
+            document.getElementById('inputTagPerson').value = state.tagPerson;
+            document.getElementById('inputTagProduct').value = state.tagProduct;
+            updateTagPresetButtons();
+            saveState();
+            renderOutputs(false);
+            showToast(`Tag diubah ke ${state.tagPerson} & ${state.tagProduct}`);
+          });
+        });
+
+        document.getElementById('inputShortInfo').addEventListener('input', (e) => {
+          state.shortInfo = e.target.value;
+          state.customDialog1 = '';
+          state.customDialog2 = '';
+          saveState();
+          renderOutputs(true);
+        });
+
+        document.getElementById('inputDialogScene1').addEventListener('input', (e) => {
+          state.customDialog1 = e.target.value;
+          saveState();
+          renderOutputs(false);
+        });
+
+        document.getElementById('inputDialogScene2').addEventListener('input', (e) => {
+          state.customDialog2 = e.target.value;
+          saveState();
+          renderOutputs(false);
+        });
+
+        document.querySelectorAll('.tone-pill').forEach(btn => {
+          btn.addEventListener('click', () => {
+            state.tone = btn.dataset.tone;
+            state.customDialog1 = '';
+            state.customDialog2 = '';
+            document.querySelectorAll('.tone-pill').forEach(b => {
+              const sel = b.dataset.tone === state.tone;
+              b.classList.toggle('selected', sel);
+              if (sel) b.classList.remove('bg-white', 'text-slate-700', 'hover:bg-sofy-50');
+              else b.classList.add('bg-white', 'text-slate-700', 'hover:bg-sofy-50');
+            });
+            saveState();
+            renderOutputs(true);
+          });
+        });
+
+        document.querySelectorAll('.model-pill').forEach(btn => {
+          btn.addEventListener('click', () => {
+            state.modelFilter = btn.dataset.model;
+            saveState();
+            updateModelFilterUI();
+          });
+        });
+
+        document.getElementById('btnAnalyzeAI').addEventListener('click', analyzeProductWithGemini);
+
+        document.getElementById('btnGeneratePrompt').addEventListener('click', () => {
+          state.shortInfo = document.getElementById('inputShortInfo').value;
+          state.customDialog1 = '';
+          state.customDialog2 = '';
+          saveState();
+          renderOutputs(true);
+          switchTab('video');
+          document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          showToast('Prompt 2 Scene × 10 detik siap disalin!');
+        });
+
+        document.getElementById('btnShuffleAll').addEventListener('click', () => {
+          state.variant = (state.variant + 1) % 3;
+          state.customDialog1 = '';
+          state.customDialog2 = '';
+          saveState();
+          renderOutputs(true);
+          showToast('Variasi skrip 2 scene baru siap dipakai!');
+        });
+
+        document.querySelectorAll('.result-tab').forEach(btn => {
+          btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+        });
+
+        document.body.addEventListener('click', (e) => {
+          const copyBtn = e.target.closest('.copy-btn');
+          if (copyBtn) {
+            const target = document.getElementById(copyBtn.dataset.copyTarget);
+            if (target) copyText(target.textContent.trim(), 'Prompt berhasil disalin! Tinggal tempel ke Flow.');
+          }
+        });
+
+        document.getElementById('btnCopyAll').addEventListener('click', () => {
+          copyText(buildAllText(), 'Semua paket 2 scene + caption berhasil disalin!');
+        });
+
+        document.getElementById('btnDownloadTxt').addEventListener('click', () => {
+          const blob = new Blob([buildAllText()], { type: 'text/plain;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'prompt-2scene-omni-flash-sofy.txt';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+          showToast('File .TXT berhasil diunduh!');
+        });
+
+        // Guide Modal
+        const gModal = document.getElementById('guideModal');
+        const openG = () => { gModal.classList.remove('hidden'); gModal.classList.add('flex'); };
+        const closeG = () => { gModal.classList.add('hidden'); gModal.classList.remove('flex'); };
+        document.getElementById('btnOpenGuide').addEventListener('click', openG);
+        document.getElementById('btnCloseGuide').addEventListener('click', closeG);
+        document.getElementById('btnCloseGuideBottom').addEventListener('click', closeG);
+        gModal.addEventListener('click', (e) => { if (e.target === gModal) closeG(); });
+      }
+
+      loadState();
+      document.getElementById('inputTagPerson').value = state.tagPerson;
+      document.getElementById('inputTagProduct').value = state.tagProduct;
+      updateTagPresetButtons();
+      document.getElementById('inputShortInfo').value = state.shortInfo;
+      document.querySelectorAll('.tone-pill').forEach(b => {
+        const sel = b.dataset.tone === state.tone;
+        b.classList.toggle('selected', sel);
+        if (sel) b.classList.remove('bg-white', 'text-slate-700', 'hover:bg-sofy-50');
+        else b.classList.add('bg-white', 'text-slate-700', 'hover:bg-sofy-50');
+      });
+      updatePhotoPreviews();
+      renderOutputs(true);
+      switchTab('video');
+      bindEvents();
+    })();
+  </script>
+</body>
+</html>
