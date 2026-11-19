@@ -14,6 +14,8 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Foto produk wajib diupload.' });
     }
 
+    const hasPerson = !!(personImage && typeof personImage === 'string' && personImage.includes(','));
+
     const toneMap = {
       racun: 'Racun TikTok yang antusias, FOMO, santai bahasa sehari-hari',
       review: 'Review jujur natural seperti teman sendiri, meyakinkan',
@@ -21,14 +23,21 @@ export default async function handler(req, res) {
       soft: 'Soft selling hangat, bercerita santai tanpa terkesan memaksa'
     };
 
-    const promptInstruction = `Kamu adalah ahli konten TikTok Affiliate Indonesia. Analisa foto produk yang dikirim dengan teliti (baca merek, jenis produk, warna, bentuk kemasan, ukuran, dan manfaat utamanya).
+    const promptInstruction = `Kamu adalah ahli konten TikTok Affiliate Indonesia dan prompt engineer Google Flow / Gemini Omni Flash.
+Gambar 1 adalah FOTO PRODUK.
+${hasPerson ? 'Gambar 2 adalah FOTO ORANG / MODEL (karakter yang HARUS dikunci persis agar wajah, rambut/hijab, dan bajunya tidak berubah).' : 'Tidak ada foto orang yang dikirim.'}
+
+Tugasmu:
+1. Baca detail FOTO PRODUK (Gambar 1): merek, jenis barang, warna, bentuk kemasan, ukuran, dan manfaat utamanya.
+${hasPerson ? '2. Baca detail FOTO ORANG (Gambar 2) dengan sangat teliti agar tidak berubah karakter: jenis kelamin, perkiraan usia, warna kulit, gaya & warna rambut atau hijab, kacamata (jika ada), jenis & warna baju/outfit.' : '2. Kosongkan personVisualEn menjadi string kosong "".'}
 Catatan tambahan dari user: "${note || 'tidak ada'}".
 Gaya jualan: ${toneMap[tone] || toneMap.racun}.
 
 Balas HANYA dengan JSON valid (tanpa markdown) dengan struktur persis berikut:
 {
   "productName": "Nama produk jelas & singkat dalam Bahasa Indonesia",
-  "productVisualEn": "Concise accurate English visual description of the exact product shape, color, material, and packaging visible in the photo (max 22 words)",
+  "productVisualEn": "Concise accurate English visual description of the exact product shape, color, material, and packaging visible in Image 1 (max 22 words)",
+  "personVisualEn": "Concise accurate English visual description of the exact person from Image 2: gender, approximate age, skin tone, exact hair or hijab style and color, glasses if any, and exact outfit color/style (max 26 words, or empty string if no Image 2)",
   "productBenefitsId": "2-3 keunggulan utama produk dalam Bahasa Indonesia singkat & natural",
   "scene1Dialog": "Dialog Bahasa Indonesia natural untuk Scene 1 (0-10 detik, 18-24 kata, hook menarik + kenalin produk, akhiri dengan kalimat pengantar ke Scene 2)",
   "scene2Dialog": "Dialog Bahasa Indonesia natural untuk Scene 2 (10-20 detik, 18-24 kata, lanjutan langsung dari Scene 1 + sebut keunggulan + ajak klik keranjang kuning kiri bawah)",
@@ -44,7 +53,7 @@ Balas HANYA dengan JSON valid (tanpa markdown) dengan struktur persis berikut:
       { inlineData: { mimeType: prodMime, data: prodBase64 } }
     ];
 
-    if (personImage && typeof personImage === 'string' && personImage.includes(',')) {
+    if (hasPerson) {
       const pBase64 = personImage.split(',')[1];
       const pMime = (personImage.match(/^data:(image\/[a-zA-Z0-9.+-]+);base64,/) || [])[1] || 'image/jpeg';
       parts.push({ inlineData: { mimeType: pMime, data: pBase64 } });
@@ -63,7 +72,7 @@ Balas HANYA dengan JSON valid (tanpa markdown) dengan struktur persis berikut:
         },
         body: JSON.stringify({
           contents: [{ parts }],
-          generationConfig: { responseMimeType: 'application/json', temperature: 0.7 }
+          generationConfig: { responseMimeType: 'application/json', temperature: 0.6 }
         })
       });
 
