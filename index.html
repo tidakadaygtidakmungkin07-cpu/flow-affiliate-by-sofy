@@ -132,10 +132,10 @@
             AI Vision Gemini • 2 Scene × 10 Detik Nyambung
           </span>
           <h2 class="text-lg sm:text-xl font-extrabold leading-snug">
-            Upload Foto Orang + Produk, AI Baca Detail Produknya Otomatis!
+            Upload 3 Referensi (Orang + Produk + Tempat) → Jadi 1 Prompt!
           </h2>
           <p class="text-xs sm:text-sm text-sky-50 mt-1">
-            Gemini Vision otomatis baca nama, warna, kemasan &amp; keunggulan dari foto produkmu lalu susun <strong>2 Scene × 10 Detik</strong> untuk <strong>Omni 1.1 &amp; 1.2 Flash</strong> dengan kunci karakter <strong>@orang &amp; @produk</strong>.
+            Gabungkan <strong>@orang</strong> + <strong>@produk</strong> + <strong>@tempat</strong> ke dalam <strong>2 Scene × 10 Detik</strong> untuk <strong>Omni 1.1 &amp; 1.2 Flash</strong> dengan kunci wajah 100% tetap sama seperti foto referensi.
           </p>
         </div>
         <div class="bg-white/15 border border-white/25 rounded-2xl px-3.5 py-2.5 shrink-0 text-left sm:text-right">
@@ -150,75 +150,98 @@
     <section class="glass-card rounded-3xl p-5 sm:p-6 space-y-5">
       <div class="flex items-center justify-between gap-2">
         <div>
-          <h3 class="text-base font-extrabold text-sofy-900">1. Upload 2 Foto Bahan</h3>
-          <p class="text-xs text-slate-500">Upload Foto Orang &amp; Foto Produk, lalu klik <strong>AI Baca Foto &amp; Buat Prompt</strong>.</p>
+          <h3 class="text-base font-extrabold text-sofy-900">1. Upload 3 Foto Referensi</h3>
+          <p class="text-xs text-slate-500">Masukkan <strong>1. Orang</strong>, <strong>2. Produk</strong>, dan <strong>3. Tempat</strong>, lalu klik <strong>AI Baca Foto &amp; Buat Prompt</strong>.</p>
         </div>
         <button id="btnClearPhotos" type="button" class="text-xs font-semibold text-slate-500 hover:text-rose-600 underline shrink-0">
           Reset Foto
         </button>
       </div>
 
-      <!-- 2 Upload Slots -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <!-- 3 Upload Slots: Orang, Produk, Tempat -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
         <!-- Slot 1: Person -->
-        <div id="dropPerson" class="drop-zone rounded-2xl p-4 flex flex-col items-center justify-center text-center min-h-[195px] relative cursor-pointer">
+        <div id="dropPerson" class="drop-zone rounded-2xl p-3.5 flex flex-col items-center justify-center text-center min-h-[185px] relative cursor-pointer">
           <input id="filePerson" type="file" accept="image/*" class="hidden" />
-          <div id="emptyPerson" class="space-y-2 pointer-events-none">
-            <div class="w-12 h-12 mx-auto rounded-2xl bg-sofy-100 text-sofy-600 flex items-center justify-center">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+          <div id="emptyPerson" class="space-y-1.5 pointer-events-none">
+            <div class="w-11 h-11 mx-auto rounded-2xl bg-sofy-100 text-sofy-600 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
             </div>
-            <div class="text-sm font-extrabold text-sofy-900">Foto Orang / Model</div>
-            <p class="text-xs text-slate-500 max-w-[205px] mx-auto">Klik pilih foto model (<strong>@orang</strong>)</p>
+            <div class="text-xs sm:text-sm font-extrabold text-sofy-900">1. Foto Orang</div>
+            <p class="text-[11px] text-slate-500">Karakter dikunci (<strong>@orang</strong>)</p>
           </div>
           <div id="previewPersonWrap" class="hidden w-full flex flex-col items-center gap-2">
-            <img id="previewPersonImg" alt="Preview Foto Orang" class="max-h-36 max-w-full h-auto rounded-xl object-contain border border-sofy-100 shadow-sm" />
+            <img id="previewPersonImg" alt="Preview Foto Orang" class="max-h-32 max-w-full h-auto rounded-xl object-contain border border-sofy-100 shadow-sm" />
             <div class="flex items-center gap-2">
-              <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">Foto Orang Siap</span>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">1. Orang Siap</span>
               <button id="btnChangePerson" type="button" class="text-xs font-bold text-sofy-600 hover:underline">Ganti</button>
             </div>
           </div>
         </div>
 
         <!-- Slot 2: Product -->
-        <div id="dropProduct" class="drop-zone rounded-2xl p-4 flex flex-col items-center justify-center text-center min-h-[195px] relative cursor-pointer">
+        <div id="dropProduct" class="drop-zone rounded-2xl p-3.5 flex flex-col items-center justify-center text-center min-h-[185px] relative cursor-pointer">
           <input id="fileProduct" type="file" accept="image/*" class="hidden" />
-          <div id="emptyProduct" class="space-y-2 pointer-events-none">
-            <div class="w-12 h-12 mx-auto rounded-2xl bg-ajaib-400/35 text-amber-800 flex items-center justify-center">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg>
+          <div id="emptyProduct" class="space-y-1.5 pointer-events-none">
+            <div class="w-11 h-11 mx-auto rounded-2xl bg-ajaib-400/35 text-amber-800 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg>
             </div>
-            <div class="text-sm font-extrabold text-sofy-900">Foto Produk (Akan Dibaca AI)</div>
-            <p class="text-xs text-slate-500 max-w-[205px] mx-auto">Klik pilih foto produk etalase (<strong>@produk</strong>)</p>
+            <div class="text-xs sm:text-sm font-extrabold text-sofy-900">2. Foto Produk</div>
+            <p class="text-[11px] text-slate-500">Dibaca AI (<strong>@produk</strong>)</p>
           </div>
           <div id="previewProductWrap" class="hidden w-full flex flex-col items-center gap-2">
-            <img id="previewProductImg" alt="Preview Foto Produk" class="max-h-36 max-w-full h-auto rounded-xl object-contain border border-sofy-100 shadow-sm" />
+            <img id="previewProductImg" alt="Preview Foto Produk" class="max-h-32 max-w-full h-auto rounded-xl object-contain border border-sofy-100 shadow-sm" />
             <div class="flex items-center gap-2">
-              <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">Foto Produk Siap</span>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">2. Produk Siap</span>
               <button id="btnChangeProduct" type="button" class="text-xs font-bold text-sofy-600 hover:underline">Ganti</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slot 3: Location / Place -->
+        <div id="dropPlace" class="drop-zone rounded-2xl p-3.5 flex flex-col items-center justify-center text-center min-h-[185px] relative cursor-pointer">
+          <input id="filePlace" type="file" accept="image/*" class="hidden" />
+          <div id="emptyPlace" class="space-y-1.5 pointer-events-none">
+            <div class="w-11 h-11 mx-auto rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+            </div>
+            <div class="text-xs sm:text-sm font-extrabold text-sofy-900">3. Foto Tempat</div>
+            <p class="text-[11px] text-slate-500">Latar lokasi (<strong>@tempat</strong>)</p>
+          </div>
+          <div id="previewPlaceWrap" class="hidden w-full flex flex-col items-center gap-2">
+            <img id="previewPlaceImg" alt="Preview Foto Tempat" class="max-h-32 max-w-full h-auto rounded-xl object-contain border border-sofy-100 shadow-sm" />
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">3. Tempat Siap</span>
+              <button id="btnChangePlace" type="button" class="text-xs font-bold text-sofy-600 hover:underline">Ganti</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- @ Tag Mention Bar -->
+      <!-- @ Tag Mention Bar (3 References) -->
       <div class="rounded-2xl bg-sofy-50/80 border border-sofy-200 p-3.5 space-y-2.5">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div class="flex flex-wrap items-center gap-2">
-            <span class="text-xs font-extrabold text-sofy-900">Tag @ di Prompt:</span>
-            <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-extrabold">Kunci Karakter 100% Aktif</span>
+            <span class="text-xs font-extrabold text-sofy-900">Tag @ di Baris Awal Prompt:</span>
+            <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-extrabold">Kunci Wajah 100% Aktif</span>
           </div>
           <div class="flex items-center gap-1.5">
-            <button type="button" data-tag-preset="id" class="tag-preset-btn px-2.5 py-1 rounded-lg bg-sofy-600 text-white text-[11px] font-bold transition">@orang &amp; @produk</button>
-            <button type="button" data-tag-preset="en" class="tag-preset-btn px-2.5 py-1 rounded-lg bg-white text-sofy-800 border border-sofy-200 hover:bg-sofy-100 text-[11px] font-bold transition">@Image1 &amp; @Image2</button>
+            <button type="button" data-tag-preset="id" class="tag-preset-btn px-2.5 py-1 rounded-lg bg-sofy-600 text-white text-[11px] font-bold transition">@orang @produk @tempat</button>
+            <button type="button" data-tag-preset="en" class="tag-preset-btn px-2.5 py-1 rounded-lg bg-white text-sofy-800 border border-sofy-200 hover:bg-sofy-100 text-[11px] font-bold transition">@Image1 @Image2 @Image3</button>
           </div>
         </div>
-        <div class="grid grid-cols-2 gap-2.5">
+        <div class="grid grid-cols-3 gap-2">
           <div>
-            <label for="inputTagPerson" class="block text-[11px] font-bold text-slate-600 mb-1">Tag @ Foto Orang</label>
-            <input id="inputTagPerson" type="text" value="@orang" class="w-full px-3 py-2 rounded-xl border border-sofy-200 bg-white text-xs font-extrabold text-sofy-800 focus:border-sofy-500 outline-none" />
+            <label for="inputTagPerson" class="block text-[11px] font-bold text-slate-600 mb-1">1. Tag Orang</label>
+            <input id="inputTagPerson" type="text" value="@orang" class="w-full px-2.5 py-2 rounded-xl border border-sofy-200 bg-white text-xs font-extrabold text-sofy-800 focus:border-sofy-500 outline-none" />
           </div>
           <div>
-            <label for="inputTagProduct" class="block text-[11px] font-bold text-slate-600 mb-1">Tag @ Foto Produk</label>
-            <input id="inputTagProduct" type="text" value="@produk" class="w-full px-3 py-2 rounded-xl border border-sofy-200 bg-white text-xs font-extrabold text-amber-800 focus:border-sofy-500 outline-none" />
+            <label for="inputTagProduct" class="block text-[11px] font-bold text-slate-600 mb-1">2. Tag Produk</label>
+            <input id="inputTagProduct" type="text" value="@produk" class="w-full px-2.5 py-2 rounded-xl border border-sofy-200 bg-white text-xs font-extrabold text-amber-800 focus:border-sofy-500 outline-none" />
+          </div>
+          <div>
+            <label for="inputTagPlace" class="block text-[11px] font-bold text-slate-600 mb-1">3. Tag Tempat</label>
+            <input id="inputTagPlace" type="text" value="@tempat" class="w-full px-2.5 py-2 rounded-xl border border-sofy-200 bg-white text-xs font-extrabold text-emerald-800 focus:border-sofy-500 outline-none" />
           </div>
         </div>
       </div>
@@ -276,10 +299,11 @@
           <div id="miniThumbs" class="flex items-center -space-x-2">
             <div id="miniThumb1" class="w-10 h-10 rounded-xl bg-sofy-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-sofy-700 overflow-hidden shadow-sm">Orang</div>
             <div id="miniThumb2" class="w-10 h-10 rounded-xl bg-ajaib-400/40 border-2 border-white flex items-center justify-center text-[10px] font-bold text-amber-900 overflow-hidden shadow-sm">Produk</div>
+            <div id="miniThumb3" class="w-10 h-10 rounded-xl bg-emerald-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-emerald-800 overflow-hidden shadow-sm">Tempat</div>
           </div>
           <div>
             <h3 class="text-base font-extrabold text-sofy-900">Hasil Prompt 2 Scene × 10 Detik (Omni Flash)</h3>
-            <p class="text-xs text-slate-500">Upload 2 foto di atas ke Google Flow, atur durasi <strong>10 detik (9:16)</strong> per scene.</p>
+            <p class="text-xs text-slate-500">Upload 3 foto referensi (Orang + Produk + Tempat) ke Google Flow, atur <strong>10 detik (9:16)</strong>.</p>
           </div>
         </div>
 
@@ -517,6 +541,7 @@
         shortInfo: '',
         tagPerson: '@orang',
         tagProduct: '@produk',
+        tagPlace: '@tempat',
         tone: 'racun',
         modelFilter: 'both',
         variant: 0,
@@ -526,7 +551,8 @@
         aiData: null, // { productName, productVisualEn, productBenefitsId, scene1Dialog, scene2Dialog, caption, hashtags, modelUsed }
         checklist: {},
         personImg: '',
-        productImg: ''
+        productImg: '',
+        placeImg: ''
       };
 
       function loadState() {
@@ -539,6 +565,7 @@
               shortInfo: parsed.shortInfo || '',
               tagPerson: parsed.tagPerson || '@orang',
               tagProduct: parsed.tagProduct || '@produk',
+              tagPlace: parsed.tagPlace || '@tempat',
               tone: parsed.tone || 'racun',
               modelFilter: parsed.modelFilter || 'both',
               variant: Number(parsed.variant) || 0,
@@ -556,6 +583,7 @@
             shortInfo: state.shortInfo,
             tagPerson: state.tagPerson,
             tagProduct: state.tagProduct,
+            tagPlace: state.tagPlace,
             tone: state.tone,
             modelFilter: state.modelFilter,
             variant: state.variant,
@@ -774,7 +802,8 @@
         };
         return {
           person: clean(state.tagPerson, 'orang'),
-          product: clean(state.tagProduct, 'produk')
+          product: clean(state.tagProduct, 'produk'),
+          place: clean(state.tagPlace, 'tempat')
         };
       }
 
@@ -782,42 +811,37 @@
         const info = getProductPhrase();
         const tags = getTags();
         const prodDetail = info.visualEn ? ` (${info.visualEn})` : '';
-        const charDetail = info.personVisualEn ? ` (${info.personVisualEn})` : '';
-        return `${tags.person} ${tags.product}\nSCENE 1 of 2 (10-second vertical 9:16 handheld smartphone UGC video, single continuous steady shot). Subject: the exact person${charDetail} holding the exact product${prodDetail}. STRICT IDENTITY & PRODUCT LOCK: Keep the person's exact face, eyes, skin tone, hair/hijab, and outfit 100% identical to the first reference photo across every frame—ZERO face change, ZERO morphing. Keep the product's exact shape, color, and packaging text 100% identical to the second reference photo. Action: Keeping natural lighting and setting matching the reference photo, the person smiles warmly at the camera to hook the viewer while holding the product near chest level, ending steadily at 10s facing the camera for seamless continuation into Scene 2. Native Indonesian audio (natural friendly voice matching the person, accurate lip-sync, light room ambience, no music): "${dialog1}" — Realistic smartphone video, no on-screen text, no watermark.`;
+        return `${tags.person} ${tags.product} ${tags.place}\nSCENE 1 of 2 (10-second vertical 9:16 video). Combine all 3 reference images seamlessly: use the EXACT person from the first reference image, holding the EXACT product${prodDetail} from the second reference image, placed naturally inside the EXACT location, background, and lighting from the third reference image. STRICT FACE & IDENTITY LOCK: Keep the person's exact face, eyes, nose, lips, jawline, skin tone, hair/hijab, and exact clothing 100% identical to the first reference image in every single frame—never change or replace the person's face. Keep the product's exact shape, color, and packaging text identical to the second reference image, and keep the room/location background faithfully matching the third reference image. Camera & Motion: steady locked-off front-facing medium close-up shot (no camera pan, no sudden zoom, minimal head turn) so the person's face stays 100% locked and recognizable. The person faces the camera with a warm natural smile while gently holding the exact product near chest level inside that location, ending calmly facing forward at 10s so Scene 2 continues seamlessly. Native Indonesian audio (natural friendly voice, accurate lip-sync, light natural ambience, no music): "${dialog1}" — Photorealistic smartphone UGC look, no on-screen text, no watermark.`;
       }
 
       function buildS1Omni12(dialog1) {
         const info = getProductPhrase();
         const tags = getTags();
         const prodDetail = info.visualEn ? ` (${info.visualEn})` : '';
-        const charDetail = info.personVisualEn ? ` (${info.personVisualEn})` : '';
-        return `${tags.person} ${tags.product}\nSCENE 1 of 2 (10-second vertical 9:16 photorealistic TikTok affiliate UGC video). Subject: the exact person${charDetail} promoting the exact product${prodDetail}. STRICT IDENTITY & PRODUCT LOCK: Keep the person's exact face, facial geometry, skin tone, hair/hijab, and clothing 100% unchanged from 0s to 10s—ZERO face replacement or identity drift. Keep the product 100% faithful in shape, color, and label details. Sequence beat by beat: [0-4s Hook] Medium close-up handheld smartphone shot in natural lighting matching the reference photo; the person makes lively eye contact and raises the product near chest height with an excited smile. [4-10s Intro] Steady framing as the person presents the product clearly in hand, ending at 10s in a centered medium shot holding it near chest so Scene 2 continues seamlessly. Audio & Dialogue (natural expressive Indonesian voice matching the person, tight lip-sync, subtle ambience, no music): "${dialog1}" — Authentic 9:16 UGC realism, no text overlay, no watermark.`;
+        return `${tags.person} ${tags.product} ${tags.place}\nSCENE 1 of 2 (10-second vertical 9:16 video). Combine all 3 reference images into one realistic scene: the EXACT person from the first reference image, holding the EXACT product${prodDetail} from the second reference image, inside the EXACT location and background from the third reference image. STRICT FACE & IDENTITY LOCK: Keep the person's exact face, facial proportions, eyes, skin tone, hair/hijab, and clothing 100% identical to the first reference image from 0s to 10s—the character's face must stay completely unchanged. Keep the product 100% faithful to the second reference image and blend naturally with the lighting and setting of the third reference image. Keep the camera steady in a front-facing medium close-up with minimal head movement so the face stays 100% recognizable. Sequence: [0-4s Hook] Standing/seated inside the third reference location, the person looks straight at the camera with a warm friendly smile and gently lifts the exact product near chest height. [4-10s Intro] Keeping the same steady framing and front-facing posture, the person holds the product clearly toward the camera, ending steadily facing forward at 10s for seamless continuation into Scene 2. Native Indonesian audio (natural expressive voice, tight lip-sync, subtle ambience, no music): "${dialog1}" — Authentic 9:16 smartphone realism, no text overlay, no watermark.`;
       }
 
       function buildS2Omni11(dialog2) {
         const info = getProductPhrase();
         const tags = getTags();
         const prodDetail = info.visualEn ? ` (${info.visualEn})` : '';
-        const charDetail = info.personVisualEn ? ` (${info.personVisualEn})` : '';
-        return `${tags.person} ${tags.product}\nSCENE 2 of 2 — SEAMLESS CONTINUATION FROM SCENE 1 (10-second vertical 9:16 handheld smartphone UGC video, single continuous steady shot). Subject: the exact same person${charDetail} continuing with the exact product${prodDetail}. CONTINUITY & IDENTITY LOCK: Continue directly from the exact final frame, lighting, room background, camera angle, outfit, and pose of Scene 1 with ZERO jump cuts. Keep the person's face, skin tone, hair/hijab, and clothing 100% identical with zero morphing, and keep the product's shape, color, and label completely unchanged. Action: Starting from holding the product near chest level, the person smoothly brings it slightly closer to the lens and turns it gently to show its real packaging details, then pulls back slightly with a warm confident smile and gestures subtly downward toward the bottom-left corner (yellow basket area). Native Indonesian audio (exact same voice as Scene 1, accurate lip-sync, light room ambience, no music): "${dialog2}" — Realistic smartphone video, no on-screen text, no watermark.`;
+        return `${tags.person} ${tags.product} ${tags.place}\nSCENE 2 of 2 — SEAMLESS CONTINUATION FROM SCENE 1 (10-second vertical 9:16 video). Continue directly from the exact final frame of Scene 1, keeping the EXACT same person from the first reference image, the EXACT same product${prodDetail} from the second reference image, and the EXACT same location/background from the third reference image. STRICT FACE & CONTINUITY LOCK: Preserve 100% identical face, eyes, skin tone, hair/hijab, outfit, lighting, and location background from Scene 1 and the reference images in every single frame with zero jump cuts. Camera & Motion: steady locked-off front-facing medium close-up (minimal head movement). Starting from holding the product near chest level, the person gently angles the product slightly closer toward the camera to show its real packaging clearly, then smiles warmly facing forward and points subtly downward toward the bottom-left corner (yellow basket area). Native Indonesian audio (exact same voice as Scene 1, accurate lip-sync, light natural ambience, no music): "${dialog2}" — Photorealistic smartphone UGC look, no on-screen text, no watermark.`;
       }
 
       function buildS2Omni12(dialog2) {
         const info = getProductPhrase();
         const tags = getTags();
         const prodDetail = info.visualEn ? ` (${info.visualEn})` : '';
-        const charDetail = info.personVisualEn ? ` (${info.personVisualEn})` : '';
-        return `${tags.person} ${tags.product}\nSCENE 2 of 2 — SEAMLESS CONTINUATION FROM SCENE 1 (10-second vertical 9:16 photorealistic TikTok affiliate UGC video). Subject: the exact same person${charDetail} continuing with the exact product${prodDetail}. CONTINUITY & IDENTITY LOCK: Start seamlessly from the exact ending pose, lighting, background, and camera position of Scene 1. Keep the person's exact face, skin tone, hair/hijab, and outfit 100% unchanged with zero face drift, and keep the product 100% faithful in shape, color, and label. Sequence beat by beat: [0-5s Close-up Demo] Smooth gentle push-in as the person angles and rotates the product clearly toward the lens so its real texture and packaging stay sharp while the person's face remains completely unchanged. [5-10s CTA Ending] Smooth pull-back to the same warm medium shot; the person holds the product neatly with one hand, smiles warmly, and points subtly downward toward the bottom-left yellow basket area. Audio & Dialogue (exact same expressive Indonesian voice as Scene 1, tight lip-sync, subtle ambience, no music): "${dialog2}" — Authentic 9:16 UGC realism, no text overlay, no watermark.`;
+        return `${tags.person} ${tags.product} ${tags.place}\nSCENE 2 of 2 — SEAMLESS CONTINUATION FROM SCENE 1 (10-second vertical 9:16 video). Start seamlessly from the exact ending frame, pose, lighting, and location of Scene 1, keeping the EXACT person from the first reference image, the EXACT product${prodDetail} from the second reference image, and the EXACT setting from the third reference image 100% unchanged. STRICT FACE LOCK: Keep the person's exact face, facial features, skin tone, hair/hijab, and clothing identical to the first reference image across all 10 seconds with steady front-facing framing and minimal head movement. Sequence: [0-5s Product Demo] Keeping the same steady camera in the exact same location, the person gently brings the product slightly forward and tilts it softly so its real packaging details stay sharp while the person's face stays completely locked. [5-10s CTA Ending] The person holds the product neatly with one hand, smiles warmly straight at the camera, and points subtly downward toward the bottom-left yellow basket area. Native Indonesian audio (exact same voice as Scene 1, tight lip-sync, subtle ambience, no music): "${dialog2}" — Authentic 9:16 smartphone realism, no text overlay, no watermark.`;
       }
 
       function buildPhotoPrompt() {
         const info = getProductPhrase();
         const tags = getTags();
         const extra = info.visualEn ? ` (${info.visualEn})` : '';
-        const charDetail = info.personVisualEn ? ` (${info.personVisualEn})` : '';
         const poses = [
-          `${tags.person} ${tags.product}\nVertical 9:16 photorealistic UGC smartphone photo (ideal as First Frame for Omni Flash). Subject: the exact person${charDetail} holding the exact product${extra}. STRICT IDENTITY & PRODUCT LOCK: Keep the person's exact face, facial structure, skin tone, hair/hijab, and outfit 100% identical and unchanged—ZERO face swap or beautification. The person smiles naturally at the camera while holding the product clearly near chest level with one hand, preserving its exact shape, colors, and packaging label with zero distortion. Natural lighting matching the reference photo, sharp focus, no text overlay, no watermark.`,
-          `${tags.person} ${tags.product}\nVertical 9:16 authentic TikTok affiliate selfie photo (ideal as First Frame for Omni Flash). Subject: the exact person${charDetail} showcasing the exact product${extra}. STRICT IDENTITY & PRODUCT LOCK: Do NOT alter the person's face, identity, hair/hijab, or clothing—keep them 100% identical to the reference photo. The person enthusiastically holds the product closer to the lens with natural finger grip while keeping its exact shape, color, and label completely undistorted. Bright natural daylight, crisp smartphone realism, no text, no watermark.`
+          `${tags.person} ${tags.product} ${tags.place}\nVertical 9:16 photorealistic UGC smartphone photo (ideal as First Frame for Omni Flash). Combine all 3 references: place the EXACT person from the first reference image inside the EXACT location and background from the third reference image, holding the EXACT product${extra} from the second reference image near chest level with one hand. STRICT FACE LOCK: Keep the person's exact face, eyes, nose, lips, skin tone, hair/hijab, and exact clothing 100% identical to the first reference image—do not change the character's face at all. Keep the product's exact shape, color, and label faithful to the second reference image, blended naturally with the lighting of the third reference location. Sharp focus, no text overlay, no watermark.`,
+          `${tags.person} ${tags.product} ${tags.place}\nVertical 9:16 authentic TikTok affiliate photo (ideal as First Frame for Omni Flash). Seamlessly combine the EXACT person from the first reference image, the EXACT product${extra} from the second reference image, and the EXACT background location from the third reference image. Keep the person's face, identity, hair/hijab, and outfit 100% identical and unchanged from the first reference photo. Facing straight toward the camera inside the third reference location, the person holds the exact product neatly near chest height with natural hand grip and undistorted packaging. Crisp smartphone realism, no text, no watermark.`
         ];
         return poses[state.variant % poses.length];
       }
@@ -925,6 +949,17 @@
         } else {
           document.getElementById('miniThumb2').textContent = 'Produk';
         }
+
+        const hasPlace = !!state.placeImg;
+        document.getElementById('dropPlace').classList.toggle('has-image', hasPlace);
+        document.getElementById('emptyPlace').classList.toggle('hidden', hasPlace);
+        document.getElementById('previewPlaceWrap').classList.toggle('hidden', !hasPlace);
+        if (hasPlace) {
+          document.getElementById('previewPlaceImg').src = state.placeImg;
+          document.getElementById('miniThumb3').innerHTML = `<img src="${state.placeImg}" alt="Tempat" class="w-full h-full object-cover" />`;
+        } else {
+          document.getElementById('miniThumb3').textContent = 'Tempat';
+        }
       }
 
       function updateModelFilterUI() {
@@ -1006,12 +1041,15 @@
           const compressed = await compressImageFile(file);
           if (type === 'person') {
             state.personImg = compressed;
-            showToast('Foto Orang siap!');
+            showToast('1. Foto Orang siap!');
+          } else if (type === 'place') {
+            state.placeImg = compressed;
+            showToast('3. Foto Tempat siap!');
           } else {
             state.productImg = compressed;
             state.aiData = null;
             document.getElementById('aiDetectedBox').classList.add('hidden');
-            showToast('Foto Produk siap! Klik "AI Baca Foto & Buat Prompt".');
+            showToast('2. Foto Produk siap! Klik "AI Baca Foto & Buat Prompt".');
           }
           updatePhotoPreviews();
         } catch (e) {
@@ -1082,13 +1120,16 @@
       function bindEvents() {
         setupDropZone('dropPerson', 'filePerson', 'btnChangePerson', 'person');
         setupDropZone('dropProduct', 'fileProduct', 'btnChangeProduct', 'product');
+        setupDropZone('dropPlace', 'filePlace', 'btnChangePlace', 'place');
 
         document.getElementById('btnClearPhotos').addEventListener('click', () => {
           state.personImg = '';
           state.productImg = '';
+          state.placeImg = '';
           state.aiData = null;
           document.getElementById('filePerson').value = '';
           document.getElementById('fileProduct').value = '';
+          document.getElementById('filePlace').value = '';
           document.getElementById('aiDetectedBox').classList.add('hidden');
           document.getElementById('aiErrorBox').classList.add('hidden');
           updatePhotoPreviews();
@@ -1108,21 +1149,31 @@
           renderOutputs(false);
         });
 
+        document.getElementById('inputTagPlace').addEventListener('input', (e) => {
+          state.tagPlace = e.target.value;
+          saveState();
+          renderOutputs(false);
+        });
+
         document.querySelectorAll('.tag-preset-btn').forEach(btn => {
           btn.addEventListener('click', () => {
             if (btn.dataset.tagPreset === 'en') {
               state.tagPerson = '@Image1';
               state.tagProduct = '@Image2';
+              state.tagPlace = '@Image3';
             } else {
               state.tagPerson = '@orang';
               state.tagProduct = '@produk';
+              state.tagPlace = '@tempat';
             }
             document.getElementById('inputTagPerson').value = state.tagPerson;
             document.getElementById('inputTagProduct').value = state.tagProduct;
+      document.getElementById('inputTagPlace').value = state.tagPlace;
+            document.getElementById('inputTagPlace').value = state.tagPlace;
             updateTagPresetButtons();
             saveState();
             renderOutputs(false);
-            showToast(`Tag diubah ke ${state.tagPerson} & ${state.tagProduct}`);
+            showToast(`Tag diubah ke ${state.tagPerson} ${state.tagProduct} ${state.tagPlace}`);
           });
         });
 
@@ -1234,6 +1285,7 @@
       loadState();
       document.getElementById('inputTagPerson').value = state.tagPerson;
       document.getElementById('inputTagProduct').value = state.tagProduct;
+      document.getElementById('inputTagPlace').value = state.tagPlace;
       updateTagPresetButtons();
       document.getElementById('inputShortInfo').value = state.shortInfo;
       document.querySelectorAll('.tone-pill').forEach(b => {
